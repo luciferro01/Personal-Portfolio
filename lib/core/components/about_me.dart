@@ -46,6 +46,9 @@ class AboutMe extends StatelessWidget {
     bool isTablet = Responsive.isTablet(context);
     return Column(
       children: [
+        const SizedBox(
+          height: 30,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -53,46 +56,38 @@ class AboutMe extends StatelessWidget {
             textWidget(title: '( )', size: 30, textColor: whiteColor),
           ],
         ),
-        CarouselSlider.builder(
-          itemCount: isMobile
-              ? aboutMe.length
-              : isTablet
-                  ? 3
-                  : 2,
-          // itemCount: 3,
-          itemBuilder: ((context, index, realIndex) {
-            return isMobile
-                ? exprienceContainer(
-                    aboutMe: aboutMe,
-                    index: index,
-                    isMobile: isMobile,
-                    isTablet: isTablet)
+        const SizedBox(
+          height: 30,
+        ),
+        Container(
+          // margin: isDesktop
+          //     ? const EdgeInsets.symmetric(horizontal: 100.0)
+          //     : isTablet
+          //         ? const EdgeInsets.symmetric(horizontal: 70.0)
+          //         : const EdgeInsets.all(30),
+          child: CarouselSlider.builder(
+            itemCount: isMobile
+                ? aboutMe.length
                 : isTablet
-                    ? GridView(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                        ),
-                        children: [
-                          exprienceContainer(
-                              aboutMe: aboutMe,
-                              index: index + index,
-                              isMobile: isMobile,
-                              isTablet: isTablet),
-                          exprienceContainer(
-                              aboutMe: aboutMe,
-                              index: index + 1,
-                              isMobile: isMobile,
-                              isTablet: isTablet),
-                        ],
-                      )
-                    : GridView.count(
-                        crossAxisCount: 3,
-                        children: [
-                          if (index == 0) ...[
+                    ? 3
+                    : 2,
+            itemBuilder: ((context, index, realIndex) {
+              return isMobile
+                  ? exprienceContainer(
+                      aboutMe: aboutMe,
+                      index: index,
+                      isMobile: isMobile,
+                      isTablet: isTablet)
+                  : isTablet
+                      ? GridView(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                          ),
+                          children: [
                             exprienceContainer(
                                 aboutMe: aboutMe,
-                                index: index,
+                                index: index + index,
                                 isMobile: isMobile,
                                 isTablet: isTablet),
                             exprienceContainer(
@@ -100,38 +95,55 @@ class AboutMe extends StatelessWidget {
                                 index: index + 1,
                                 isMobile: isMobile,
                                 isTablet: isTablet),
-                            exprienceContainer(
-                                aboutMe: aboutMe,
-                                index: index + 2,
-                                isMobile: isMobile,
-                                isTablet: isTablet),
                           ],
-                          if (index == 1) ...[
-                            exprienceContainer(
-                                aboutMe: aboutMe,
-                                index: index + 2,
-                                isMobile: isMobile,
-                                isTablet: isTablet),
-                            exprienceContainer(
-                                aboutMe: aboutMe,
-                                index: index + 3,
-                                isMobile: isMobile,
-                                isTablet: isTablet),
-                            exprienceContainer(
-                                aboutMe: aboutMe,
-                                index: 0,
-                                isMobile: isMobile,
-                                isTablet: isTablet),
+                        )
+                      : GridView.count(
+                          crossAxisCount: 3,
+                          children: [
+                            if (index == 0) ...[
+                              exprienceContainer(
+                                  aboutMe: aboutMe,
+                                  index: index,
+                                  isMobile: isMobile,
+                                  isTablet: isTablet),
+                              exprienceContainer(
+                                  aboutMe: aboutMe,
+                                  index: index + 1,
+                                  isMobile: isMobile,
+                                  isTablet: isTablet),
+                              exprienceContainer(
+                                  aboutMe: aboutMe,
+                                  index: index + 2,
+                                  isMobile: isMobile,
+                                  isTablet: isTablet),
+                            ],
+                            if (index == 1) ...[
+                              exprienceContainer(
+                                  aboutMe: aboutMe,
+                                  index: index + 2,
+                                  isMobile: isMobile,
+                                  isTablet: isTablet),
+                              exprienceContainer(
+                                  aboutMe: aboutMe,
+                                  index: index + 3,
+                                  isMobile: isMobile,
+                                  isTablet: isTablet),
+                              exprienceContainer(
+                                  aboutMe: aboutMe,
+                                  index: 0,
+                                  isMobile: isMobile,
+                                  isTablet: isTablet),
+                            ],
                           ],
-                        ],
-                      );
-          }),
-          options: CarouselOptions(
-            enlargeFactor: 0.5,
-            autoPlayInterval: const Duration(seconds: 4),
-            autoPlayCurve: Curves.easeIn,
-            // disableCenter: ,
-            autoPlay: true,
+                        );
+            }),
+            options: CarouselOptions(
+              enlargeFactor: 0.5,
+              autoPlayInterval: const Duration(seconds: 4),
+              autoPlayCurve: Curves.ease,
+              animateToClosest: true,
+              autoPlay: true,
+            ),
           ),
         )
       ],
@@ -155,16 +167,16 @@ Widget exprienceContainer(
       ),
     ),
     margin: const EdgeInsets.all(20),
-    padding: const EdgeInsets.all(6),
+    // padding: const EdgeInsets.all(6),
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             textWidget(title: '<', size: 22, textColor: lineColor),
-            textWidget(title: aboutMe[index]['title'], size: 20),
+            textWidget(title: aboutMe[index]['title'], size: 30),
             textWidget(title: '/>', size: 22, textColor: lineColor),
           ],
         ),
