@@ -9,15 +9,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: darkBackgroundColor,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            NavBar(),
-            Intro(),
-            AboutMe(),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: darkBackgroundColor,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const NavBar(),
+              const Intro(),
+              AboutMe(),
+            ],
+          ),
         ),
       ),
     );
