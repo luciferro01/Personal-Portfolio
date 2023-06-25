@@ -17,6 +17,7 @@ Widget textWidget(
         color: textColor,
         fontSize: size,
       ),
+      overflow: TextOverflow.ellipsis,
     ),
   );
 }
