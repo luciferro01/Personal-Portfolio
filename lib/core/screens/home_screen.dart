@@ -7,6 +7,8 @@ import 'package:portfolio/core/components/intro.dart';
 import 'package:portfolio/core/components/nav_bar.dart';
 import 'package:portfolio/core/components/tech_stack.dart';
 
+import '../components/footer.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -24,6 +26,7 @@ class HomeScreen extends StatelessWidget {
               // const TechStack(),
               Experience(),
               ContactMe(),
+              Footer(),
             ],
           ),
         ),
