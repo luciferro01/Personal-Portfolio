@@ -28,7 +28,7 @@ Widget socialMediaButton(String icon, String lauchUrl) {
 }
 
 Widget clickButton(String title, String icon, Color backgroundColor,
-    Color borderColor, String url) {
+    Color borderColor, void Function() onPressed) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       backgroundColor: backgroundColor,
@@ -43,9 +43,7 @@ Widget clickButton(String title, String icon, Color backgroundColor,
         borderRadius: BorderRadius.circular(6),
       ),
     ),
-    onPressed: () {
-      launchUrl(Uri.parse(url));
-    },
+    onPressed: onPressed,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,

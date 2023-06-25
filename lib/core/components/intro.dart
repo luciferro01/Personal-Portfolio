@@ -4,6 +4,7 @@ import 'package:portfolio/constants/app_constants.dart';
 import 'package:portfolio/constants/assets_path.dart';
 import 'package:portfolio/utils/widgets/buttons.dart';
 import 'package:portfolio/utils/widgets/text_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../constants/responsive.dart';
 
@@ -86,9 +87,11 @@ class Intro extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        SizedBox(
-          width: 170,
-          child: clickButton('Resume', linkedIn, lineColor, whiteColor, 'url'),
+        IntrinsicWidth(
+          // width: 170,
+          child: clickButton('Resume', linkedIn, lineColor, whiteColor, () {
+            launchUrl(Uri.parse('url'));
+          }),
         ),
         const SizedBox(
           height: 30,
