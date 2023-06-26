@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.inconsolataTextTheme(),
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }

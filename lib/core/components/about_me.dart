@@ -42,7 +42,6 @@ class AboutMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isMobile = Responsive.isMobile(context);
-    bool isDesktop = Responsive.isDesktop(context);
     bool isTablet = Responsive.isTablet(context);
     return Column(
       children: [

@@ -5,7 +5,11 @@ import 'package:portfolio/utils/widgets/text_widget.dart';
 import '../../constants/responsive.dart';
 
 class Experience extends StatelessWidget {
-  Experience({super.key});
+  final GlobalKey experienceKey;
+  Experience({
+    required this.experienceKey,
+    super.key,
+  });
   final List expreince = [
     {
       'timing': 'May 2023',
@@ -44,7 +48,6 @@ class Experience extends StatelessWidget {
     bool isMobile = Responsive.isMobile(context);
     bool isDesktop = Responsive.isDesktop(context);
     bool isTablet = Responsive.isTablet(context);
-    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
     double alternating(int index) {
@@ -56,19 +59,12 @@ class Experience extends StatelessWidget {
     }
 
     return Column(
+      key: experienceKey,
       mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // textWidget(
-            //     title: '(',
-            //     size: isMobile
-            //         ? 30
-            //         : isTablet
-            //             ? 37
-            //             : 43,
-            //     textColor: whiteColor),
             textWidget(
               title: 'Experience',
               size: isMobile
@@ -89,7 +85,7 @@ class Experience extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 30,
+          height: 50,
         ),
         Flexible(
           child: ListView.builder(
@@ -134,7 +130,7 @@ class Experience extends StatelessWidget {
                               : 40.0,
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.white,
+                        color: lineColor,
                       ),
                       child: Container(
                         margin: const EdgeInsets.all(5.0),
@@ -149,7 +145,7 @@ class Experience extends StatelessWidget {
                                 ? 24
                                 : 30.0,
                         decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.red),
+                            shape: BoxShape.circle, color: darkBackgroundColor),
                       ),
                     ),
                   ),
@@ -163,9 +159,11 @@ class Experience extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        const SizedBox(height: 20),
                         ClipOval(
                           clipBehavior: Clip.antiAlias,
                           child: Container(
+                            padding: const EdgeInsets.all(10),
                             color: lightTextColor,
                             child: textWidget(
                               title: expreince[index]['timing'],
@@ -174,11 +172,12 @@ class Experience extends StatelessWidget {
                                   : isTablet
                                       ? 34
                                       : 30,
+                              textColor: lineColor,
                             ),
                           ),
                         ),
                         const SizedBox(
-                          height: 14,
+                          height: 10,
                         ),
                         textWidget(
                             title: expreince[index]['company'],
@@ -189,7 +188,7 @@ class Experience extends StatelessWidget {
                                     : 43,
                             textColor: whiteColor),
                         const SizedBox(
-                          height: 14,
+                          height: 8,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -209,7 +208,7 @@ class Experience extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(
-                          height: 14,
+                          height: 9,
                         ),
                         textWidget(
                           title: 'Responsibilitites : ',
@@ -221,7 +220,7 @@ class Experience extends StatelessWidget {
                           textColor: Colors.grey,
                         ),
                         const SizedBox(
-                          height: 14,
+                          height: 10,
                         ),
                         ...expreince[index]['responsibilites'].map(
                           (e) => Row(
@@ -250,7 +249,11 @@ class Experience extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
+                  )
+                  // .animate(
+                  //   delay: Duration(seconds: 1 + index),
+                  // )
+                  // .fadeIn(duration: const Duration(seconds: 2)),
                   // ),
                 ],
               );

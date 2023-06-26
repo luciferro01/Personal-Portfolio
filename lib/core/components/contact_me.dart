@@ -7,8 +7,8 @@ import '../../constants/responsive.dart';
 import '../../utils/widgets/buttons.dart';
 
 class ContactMe extends StatelessWidget {
-  ContactMe({super.key});
-
+  ContactMe({required this.contactMe, super.key});
+  final GlobalKey contactMe;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   void validateForm() {
     final bool isValidate = formKey.currentState!.validate();
@@ -20,12 +20,11 @@ class ContactMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isMobile = Responsive.isMobile(context);
-    bool isDesktop = Responsive.isDesktop(context);
     bool isTablet = Responsive.isTablet(context);
 
-    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Padding(
+      key: contactMe,
       padding: isMobile
           ? const EdgeInsets.all(30)
           : isTablet
@@ -65,7 +64,7 @@ class ContactMe extends StatelessWidget {
                 }
               },
               keyBoardType: TextInputType.text,
-              icon: Icons.person,
+              // icon: Icons.person,
             ),
             SizedBox(
               height: isTablet
@@ -87,7 +86,7 @@ class ContactMe extends StatelessWidget {
                 }
               },
               keyBoardType: TextInputType.emailAddress,
-              icon: Icons.mail_rounded,
+              // icon: Icons.mail_rounded,
             ),
             SizedBox(
               height: isTablet
@@ -114,7 +113,7 @@ class ContactMe extends StatelessWidget {
             IntrinsicWidth(
               child: clickButton(
                 'Send Email',
-                linkedIn,
+                send,
                 lineColor,
                 whiteColor,
                 validateForm,
@@ -129,11 +128,12 @@ class ContactMe extends StatelessWidget {
   TextFormField formField({
     required bool isMessageBox,
     required String hintText,
-    IconData? icon,
+    // IconData? icon,
     required String? Function(String?) validatorfunction,
     required TextInputType keyBoardType,
   }) {
     return TextFormField(
+      textInputAction: TextInputAction.next,
       keyboardType: keyBoardType,
       validator: validatorfunction,
       style: const TextStyle(
@@ -157,14 +157,14 @@ class ContactMe extends StatelessWidget {
         enabledBorder: !isMessageBox
             ? UnderlineInputBorder(
                 borderSide: const BorderSide(
-                  width: 5,
+                  width: 3,
                   color: headingTextColor,
                 ),
                 borderRadius: BorderRadius.circular(2),
               )
             : OutlineInputBorder(
                 borderSide: const BorderSide(
-                  width: 5,
+                  width: 3,
                   color: headingTextColor,
                 ),
                 borderRadius: BorderRadius.circular(2),
@@ -172,14 +172,14 @@ class ContactMe extends StatelessWidget {
         errorBorder: !isMessageBox
             ? UnderlineInputBorder(
                 borderSide: const BorderSide(
-                  width: 6,
+                  width: 5,
                   color: lineColor,
                 ),
                 borderRadius: BorderRadius.circular(2),
               )
             : OutlineInputBorder(
                 borderSide: const BorderSide(
-                  width: 6,
+                  width: 5,
                   color: lineColor,
                 ),
                 borderRadius: BorderRadius.circular(2),
@@ -199,11 +199,11 @@ class ContactMe extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(2),
               ),
-        prefixIcon: Icon(
-          icon,
-          color: whiteColor,
-          size: 30,
-        ),
+        // prefixIcon: Icon(
+        //   icon,
+        //   color: whiteColor,
+        //   size: 30,
+        // ),
       ),
     );
   }

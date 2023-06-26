@@ -89,7 +89,7 @@ class Intro extends StatelessWidget {
         ),
         IntrinsicWidth(
           // width: 170,
-          child: clickButton('Resume', linkedIn, lineColor, whiteColor, () {
+          child: clickButton('Resume', download, lineColor, whiteColor, () {
             launchUrl(Uri.parse('url'));
           }),
         ),
@@ -129,7 +129,7 @@ class Intro extends StatelessWidget {
       child: isTablet || isMobile
           ? Column(
               children: [
-                aboutMe(context, isTablet, isMobile, 30),
+                aboutMe(context, isTablet, isMobile, isMobile ? 30 : 40),
                 SizedBox(
                     width: MediaQuery.of(context).size.width * 0.6,
                     child: picDisplay()),

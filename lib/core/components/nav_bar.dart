@@ -8,11 +8,35 @@ import 'package:portfolio/utils/widgets/text_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NavBar extends StatelessWidget {
-  const NavBar({super.key});
+  final ScrollController scrollController;
+  final GlobalKey contactMe;
+  final GlobalKey experienceKey;
+  final GlobalKey projects;
+  final GlobalKey skills;
+  final GlobalKey aboutMe;
+  const NavBar(
+      {required this.scrollController,
+      super.key,
+      required this.contactMe,
+      required this.experienceKey,
+      required this.projects,
+      required this.skills,
+      required this.aboutMe});
 
   @override
   Widget build(BuildContext context) {
+    final List pageScrollers = [
+      {'title': 'About Me', 'scrollController': aboutMe},
+
+      {'title': 'Skills', 'scrollController': skills},
+      {'title': 'Projects', 'scrollController': projects},
+      {'title': 'Experience', 'scrollController': experienceKey},
+      {'title': 'Hire Me', 'scrollController': contactMe},
+      // {'title': '', 'scrollController': },
+    ];
     bool isDesktop = Responsive.isDesktop(context);
+
+    bool isTablet = Responsive.isTablet(context);
     return isDesktop
         ? Padding(
             // padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
@@ -20,38 +44,38 @@ class NavBar extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const CircleAvatar(
-                  backgroundColor: lightTextColor,
-                  child: Text(
-                    'M',
-                    style: TextStyle(
-                      fontSize: 26,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+                textWidget(title: 'MOHIL BANSAL', size: 30),
+                // FittedBox(
+                //   child:
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      textWidget(
-                          title: 'About', size: 20, textColor: whiteColor),
-                      textWidget(
-                          title: 'Skills', size: 20, textColor: whiteColor),
-                      textWidget(
-                          title: 'Projects', size: 20, textColor: whiteColor),
-                      textWidget(
-                          title: 'Experience', size: 20, textColor: whiteColor),
-                      textWidget(
-                          title: 'Contact Me', size: 20, textColor: whiteColor),
+                      ...pageScrollers.map(
+                        (e) => GestureDetector(
+                          onTap: () {
+                            Scrollable.ensureVisible(
+                              e['scrollController'].currentContext!,
+                              duration: const Duration(seconds: 1),
+                            );
+                          },
+                          child: FittedBox(
+                            child: textWidget(
+                                title: e['title'],
+                                size: 20,
+                                textColor: whiteColor),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
+                // ),
                 socialMediaButton(
                     linkedIn, "https://www.linkedin.com/in/mohilbansal/"),
                 socialMediaButton(
                     instagram, "https://www.instagram.com/mohil_bansal/"),
+                socialMediaButton(gitHub, "https://github.com/luciferro01/"),
                 const SizedBox(
                   width: 20,
                 ),
@@ -73,15 +97,19 @@ class NavBar extends StatelessWidget {
                   onPressed: () {
                     launchUrl(Uri.parse('www.instagram.com/mohil_bansal/'));
                   },
-                  child: Row(
-                    children: [
-                      textWidget(
-                          title: 'Contact Me', size: 16, textColor: whiteColor),
-                      SvgPicture.asset(
-                        instagram,
-                        width: 20,
-                      ),
-                    ],
+                  child: FittedBox(
+                    child: Row(
+                      children: [
+                        textWidget(
+                            title: 'Contact Me',
+                            size: 16,
+                            textColor: whiteColor),
+                        SvgPicture.asset(
+                          instagram,
+                          width: 20,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -92,25 +120,26 @@ class NavBar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CircleAvatar(
-                  backgroundColor: lightTextColor,
-                  child: Text(
-                    'M',
-                    style: TextStyle(
-                      fontSize: 26,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold,
-                    ),
+                // textWidget(title: 'MOHIL BANSAL', size: 30),
+                const Text(
+                  'MOHIL BANSAL',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: headingTextColor,
+                    overflow: TextOverflow.fade,
                   ),
                 ),
+
                 IconButton(
-                    splashColor: Colors.transparent,
-                    onPressed: () {},
-                    icon: const Icon(
-                      size: 30,
-                      Icons.menu_rounded,
-                      color: lightTextColor,
-                    ))
+                  splashColor: Colors.transparent,
+                  onPressed: () {},
+                  icon: const Icon(
+                    size: 30,
+                    Icons.menu_rounded,
+                    color: lightTextColor,
+                  ),
+                )
               ],
             ),
           );
