@@ -105,8 +105,8 @@ class NavBar extends StatelessWidget {
                             size: 16,
                             textColor: whiteColor),
                         SvgPicture.asset(
-                          instagram,
-                          width: 20,
+                          mail,
+                          width: 26,
                         ),
                       ],
                     ),
@@ -116,7 +116,7 @@ class NavBar extends StatelessWidget {
             ),
           )
         : Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(6.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -135,7 +135,7 @@ class NavBar extends StatelessWidget {
                   splashColor: Colors.transparent,
                   onPressed: () {},
                   icon: const Icon(
-                    size: 30,
+                    size: 38,
                     Icons.menu_rounded,
                     color: lightTextColor,
                   ),

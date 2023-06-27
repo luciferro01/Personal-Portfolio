@@ -11,7 +11,7 @@ Widget socialMediaButton(String icon, String lauchUrl) {
       backgroundColor: darkBackgroundColor,
       elevation: 4,
       shadowColor: headingTextColor,
-      padding: const EdgeInsets.all(17),
+      padding: const EdgeInsets.all(18),
       shape: const CircleBorder(),
     ),
     onPressed: () {
