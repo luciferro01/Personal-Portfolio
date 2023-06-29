@@ -88,23 +88,23 @@ class TechStack extends StatelessWidget {
               ),
             ),
           ])
-        // : Container();
-        : Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Flexible(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                  ),
-                  itemBuilder: ((context, index) {
-                    return Container();
-                  }),
-                ),
-              ),
-            ],
-          );
+        : Container();
+    // : Column(
+    //     mainAxisSize: MainAxisSize.min,
+    //     children: [
+    //       Flexible(
+    //         child: ListView.builder(
+    //           shrinkWrap: true,
+    //           // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+    //             crossAxisCount: 4,
+    //           ),
+    //           itemBuilder: ((context, index) {
+    //             return Container();
+    //           }),
+    //         ),
+    //       ),
+    //     ],
+    //   );
 
 //🥲🥲🥲🥲
     // return Container(

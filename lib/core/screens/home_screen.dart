@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
               ),
               const Intro(),
               // AboutMe(),
-              TechStack(),
+              // TechStack(),
               Experience(experienceKey: _experienceKey),
               ContactMe(contactMe: _contactMe),
               const Footer(),
