@@ -5,6 +5,7 @@ import 'package:portfolio/core/components/experience.dart';
 import 'package:portfolio/core/components/intro.dart';
 import 'package:portfolio/core/components/nav_bar.dart';
 
+import '../components/about_me.dart';
 import '../components/footer.dart';
 import '../components/tech_stack.dart';
 
@@ -15,21 +16,15 @@ class HomeScreen extends StatelessWidget {
   final GlobalKey _projects = GlobalKey();
   final GlobalKey _contactMe = GlobalKey();
   final GlobalKey _skills = GlobalKey();
-
   final GlobalKey _aboutMe = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    // Widget openDrawer() {
-    //   return Container();
-    // }
-
-    // bool isMobile = Responsive.isMobile(context);
-    // bool isDesktop = Responsive.isTablet(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: darkBackgroundColor,
         body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           controller: _scrollController,
           child: Column(
             children: [
@@ -43,7 +38,7 @@ class HomeScreen extends StatelessWidget {
               ),
               const Intro(),
               AboutMe(),
-              TechStack(),
+              // TechStack(),
               Experience(experienceKey: _experienceKey),
               ContactMe(contactMe: _contactMe),
               const Footer(),
