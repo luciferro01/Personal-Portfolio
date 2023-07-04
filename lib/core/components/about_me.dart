@@ -1,9 +1,5 @@
 import 'dart:async';
-import 'dart:js_interop';
-
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:portfolio/constants/app_constants.dart';
 import 'package:portfolio/constants/assets_path.dart';
@@ -86,52 +82,58 @@ class _AboutMeState extends State<AboutMe> {
     bool isMobile = Responsive.isMobile(context);
     bool isTablet = Responsive.isTablet(context);
     tablet = isTablet;
-    return Column(
-      children: [
-        const SizedBox(
-          height: 30,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            textWidget(title: 'About Me', size: 30),
-            textWidget(title: '( )', size: 30, textColor: whiteColor),
-          ],
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        SizedBox(
-          height: 400,
-          width: isMobile
-              ? width
-              : isTablet
-                  ? width * 0.8
-                  : width * 0.7,
-          child: PageView.builder(
-            allowImplicitScrolling: true,
-            controller: controller,
-            pageSnapping: true,
-            scrollDirection: Axis.horizontal,
-            onPageChanged: (value) {
-              setState(() {
-                activePage = value;
-                print(activePage % value);
-              });
-            },
-            itemBuilder: ((context, index) {
-              return exprienceContainer(
-                aboutMe: aboutMe,
-                index: index % aboutMe.length,
-                isMobile: isMobile,
-                isTablet: isTablet,
-                isActivePage: activePage == index,
-              );
-            }),
-            // itemCount: aboutMe.length,
+    return MouseRegion(
+      onHover: (event) {
+        Icons.abc;
+      },
+      cursor: SystemMouseCursors.zoomOut,
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 30,
           ),
-        ),
-      ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              textWidget(title: 'About Me', size: 30),
+              textWidget(title: '( )', size: 30, textColor: whiteColor),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          SizedBox(
+            height: 400,
+            width: isMobile
+                ? width
+                : isTablet
+                    ? width * 0.8
+                    : width * 0.7,
+            child: PageView.builder(
+              allowImplicitScrolling: true,
+              controller: controller,
+              pageSnapping: true,
+              scrollDirection: Axis.horizontal,
+              onPageChanged: (value) {
+                setState(() {
+                  activePage = value;
+                  print(activePage % value);
+                });
+              },
+              itemBuilder: ((context, index) {
+                return exprienceContainer(
+                  aboutMe: aboutMe,
+                  index: index % aboutMe.length,
+                  isMobile: isMobile,
+                  isTablet: isTablet,
+                  isActivePage: activePage == index,
+                );
+              }),
+              // itemCount: aboutMe.length,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
