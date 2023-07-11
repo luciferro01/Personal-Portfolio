@@ -8,7 +8,8 @@ import 'package:portfolio/utils/widgets/text_widget.dart';
 import '../../constants/responsive.dart';
 
 class AboutMe extends StatefulWidget {
-  AboutMe({super.key});
+  final GlobalKey aboutMe;
+  const AboutMe({super.key, required this.aboutMe});
 
   @override
   State<AboutMe> createState() => _AboutMeState();
@@ -51,19 +52,27 @@ class _AboutMeState extends State<AboutMe> {
   void initState() {
     controller = PageController(viewportFraction: !tablet ? 0.8 : 0.2);
     super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
-      activePage++;
-      print(activePage);
-    });
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!controller.hasClients) {
-        controller.animateToPage(
-          activePage,
-          duration: const Duration(milliseconds: 400),
-          curve: Curves.easeIn,
-        );
-      }
-    });
+    // _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+    //   activePage++;
+    //   print(activePage);
+    // });
+
+//  controller.animateToPage(
+//           activePage,
+//           duration: const Duration(milliseconds: 400),
+//           curve: Curves.easeIn,
+//         );
+//       }
+
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   if (!controller.hasClients) {
+    //     controller.animateToPage(
+    //       activePage,
+    //       duration: const Duration(milliseconds: 400),
+    //       curve: Curves.easeIn,
+    //     );
+    //   }
+    // });
   }
 
   @override
@@ -77,63 +86,72 @@ class _AboutMeState extends State<AboutMe> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    // double height = MediaQuery.of(context).size.height;
 
     bool isMobile = Responsive.isMobile(context);
     bool isTablet = Responsive.isTablet(context);
     tablet = isTablet;
-    return MouseRegion(
-      onHover: (event) {
-        Icons.abc;
-      },
-      cursor: SystemMouseCursors.zoomOut,
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              textWidget(title: 'About Me', size: 30),
-              textWidget(title: '( )', size: 30, textColor: whiteColor),
-            ],
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          SizedBox(
-            height: 400,
-            width: isMobile
-                ? width
-                : isTablet
-                    ? width * 0.8
-                    : width * 0.7,
-            child: PageView.builder(
-              allowImplicitScrolling: true,
-              controller: controller,
-              pageSnapping: true,
-              scrollDirection: Axis.horizontal,
-              onPageChanged: (value) {
-                setState(() {
-                  activePage = value;
-                  print(activePage % value);
-                });
-              },
-              itemBuilder: ((context, index) {
-                return exprienceContainer(
-                  aboutMe: aboutMe,
-                  index: index % aboutMe.length,
-                  isMobile: isMobile,
-                  isTablet: isTablet,
-                  isActivePage: activePage == index,
-                );
-              }),
-              // itemCount: aboutMe.length,
+    return Column(
+      key: widget.aboutMe,
+      children: [
+        const SizedBox(
+          height: 30,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            textWidget(
+              title: 'About Me',
+              size: isMobile
+                  ? 30
+                  : isTablet
+                      ? 37
+                      : 43,
             ),
+            textWidget(
+                title: '( )',
+                size: isMobile
+                    ? 30
+                    : isTablet
+                        ? 37
+                        : 43,
+                textColor: whiteColor),
+          ],
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        SizedBox(
+          height: 400,
+          width: isMobile
+              ? width
+              : isTablet
+                  ? width * 0.8
+                  : width * 0.7,
+          child: PageView.builder(
+            allowImplicitScrolling: true,
+            controller: controller,
+            pageSnapping: true,
+            scrollDirection: Axis.horizontal,
+            onPageChanged: (value) {
+              setState(() {
+                activePage = value;
+                print(activePage % value);
+              });
+            },
+            itemBuilder: ((context, index) {
+              return exprienceContainer(
+                aboutMe: aboutMe,
+                index: index % aboutMe.length,
+                isMobile: isMobile,
+                isTablet: isTablet,
+                isActivePage: activePage == index,
+              );
+            }),
+            // itemCount: aboutMe.length,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -153,7 +171,7 @@ Widget exprienceContainer(
       shape: BoxShape.rectangle,
       border: Border.all(
         width: 1,
-        color: !isActivePage! ? headingTextColor : lineColor,
+        color: !isActivePage ? headingTextColor : lineColor,
       ),
     ),
     margin: isActivePage ? const EdgeInsets.all(10) : const EdgeInsets.all(25),
@@ -233,112 +251,3 @@ Widget exprienceContainer(
     ),
   );
 }
-
-
-
-
-
-
-
-
-
-//Carousel Slider
-// Container(
-        // margin: isDesktop
-        //     ? const EdgeInsets.symmetric(horizontal: 100.0)
-        //     : isTablet
-        //         ? const EdgeInsets.symmetric(horizontal: 70.0)
-        //         : const EdgeInsets.all(30),
-        //   child: CarouselSlider.builder(
-        //     itemCount: isMobile
-        //         ? aboutMe.length
-        //         : isTablet
-        //             ? 3
-        //             : 2,
-        //     carouselController: controller,
-        //     itemBuilder: ((context, index, realIndex) {
-        //       return isMobile
-        //           ? exprienceContainer(
-        //               aboutMe: aboutMe,
-        //               index: index,
-        //               isMobile: isMobile,
-        //               isTablet: isTablet)
-        //           : isTablet
-        //               ? GridView(
-        //                   gridDelegate:
-        //                       const SliverGridDelegateWithFixedCrossAxisCount(
-        //                     crossAxisCount: 2,
-        //                   ),
-        //                   children: [
-        //                     exprienceContainer(
-        //                         aboutMe: aboutMe,
-        //                         index: index + index,
-        //                         isMobile: isMobile,
-        //                         isTablet: isTablet),
-        //                     exprienceContainer(
-        //                         aboutMe: aboutMe,
-        //                         index: index + 1,
-        //                         isMobile: isMobile,
-        //                         isTablet: isTablet),
-        //                   ],
-        //                 )
-        //               : GridView.count(
-        //                   crossAxisCount: 3,
-        //                   children: [
-        //                     if (index == 0) ...[
-        //                       exprienceContainer(
-        //                           aboutMe: aboutMe,
-        //                           index: index,
-        //                           isMobile: isMobile,
-        //                           isTablet: isTablet),
-        //                       exprienceContainer(
-        //                           aboutMe: aboutMe,
-        //                           index: index + 1,
-        //                           isMobile: isMobile,
-        //                           isTablet: isTablet),
-        //                       exprienceContainer(
-        //                           aboutMe: aboutMe,
-        //                           index: index + 2,
-        //                           isMobile: isMobile,
-        //                           isTablet: isTablet),
-        //                     ],
-        //                     if (index == 1) ...[
-        //                       exprienceContainer(
-        //                           aboutMe: aboutMe,
-        //                           index: index + 2,
-        //                           isMobile: isMobile,
-        //                           isTablet: isTablet),
-        //                       exprienceContainer(
-        //                           aboutMe: aboutMe,
-        //                           index: index + 3,
-        //                           isMobile: isMobile,
-        //                           isTablet: isTablet),
-        //                       exprienceContainer(
-        //                           aboutMe: aboutMe,
-        //                           index: 0,
-        //                           isMobile: isMobile,
-        //                           isTablet: isTablet),
-        //                     ],
-        //                   ],
-        //                 );
-        //     }),
-        //     options: CarouselOptions(
-        //       onPageChanged: (index, reason) {
-        //         print(index);
-        //         return exprienceContainer(
-        //             aboutMe: aboutMe,
-        //             index: index,
-        //             isMobile: isMobile,
-        //             isTablet: isTablet,
-        //             borderColor: lineColor);
-        //       },
-        //       enlargeFactor: 0.2,
-        //       autoPlayInterval: const Duration(seconds: 4),
-        //       autoPlayCurve: Curves.ease,
-        //       animateToClosest: true,
-        //       autoPlay: true,
-        //       enlargeCenterPage: true,
-        //       enableInfiniteScroll: true,
-        //     ),
-        //   ),
-        // )

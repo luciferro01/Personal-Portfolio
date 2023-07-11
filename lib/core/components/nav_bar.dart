@@ -36,7 +36,7 @@ class NavBar extends StatelessWidget {
     ];
     bool isDesktop = Responsive.isDesktop(context);
 
-    bool isTablet = Responsive.isTablet(context);
+    // bool isTablet = Responsive.isTablet(context);
     return isDesktop
         ? Padding(
             // padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
