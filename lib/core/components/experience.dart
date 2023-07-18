@@ -22,23 +22,23 @@ class Experience extends StatelessWidget {
       ]
     },
     {
-      'timing': 'May 2023',
-      'company': 'The Intern Bay',
-      'role': 'Software Engineer',
+      'timing': 'June 2023',
+      'company': 'Triaksha Automation Pvt. Ltd.',
+      'role': 'Backend Developer',
       'responsibilites': [
-        'Development of Application',
-        'Developing a Web Application',
-        'Designining UI',
+        'Creating Restful Apis',
+        'Implementation of SQL for database',
+        'Using AnyPoint Studio',
       ]
     },
     {
-      'timing': 'May 2023',
-      'company': 'The Intern Bay',
-      'role': 'Software Engineer',
+      'timing': 'July 2023',
+      'company': 'Clickzy Pvt. Ltd.',
+      'role': 'Full Stack Developer',
       'responsibilites': [
-        'Development of Application',
-        'Developing a Web Application',
-        'Designining UI',
+        'Development of Flutter Apps',
+        'Debugging of Apps',
+        'Using Appwrite and Node Js for the Backend',
       ]
     },
   ];
@@ -59,7 +59,9 @@ class Experience extends StatelessWidget {
     }
 
     return Container(
-      padding: const EdgeInsets.only(top: 30),
+      padding: EdgeInsets.only(
+        top: isDesktop ? 40 : 30,
+      ),
       child: Column(
         key: experienceKey,
         mainAxisSize: MainAxisSize.min,
@@ -238,15 +240,17 @@ class Experience extends StatelessWidget {
                                   height: isMobile ? 6 : 8,
                                   width: isMobile ? 6 : 8,
                                 ),
-                                FittedBox(
+                                Expanded(
+                                  // fit: BoxFit.contain,
                                   child: textWidget(
-                                      title: e,
-                                      size: isMobile
-                                          ? 16
-                                          : isTablet
-                                              ? 22
-                                              : 28,
-                                      textColor: whiteColor),
+                                    title: e,
+                                    size: isMobile
+                                        ? 16
+                                        : isTablet
+                                            ? 22
+                                            : 28,
+                                    textColor: whiteColor,
+                                  ),
                                 ),
                               ],
                             ),

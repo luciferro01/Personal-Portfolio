@@ -11,7 +11,7 @@ class NavBar extends StatelessWidget {
   final ScrollController scrollController;
   final GlobalKey contactMe;
   final GlobalKey experienceKey;
-  final GlobalKey projects;
+  // final GlobalKey projects;
   final GlobalKey skills;
   final GlobalKey aboutMe;
   const NavBar(
@@ -19,7 +19,7 @@ class NavBar extends StatelessWidget {
       super.key,
       required this.contactMe,
       required this.experienceKey,
-      required this.projects,
+      // required this.projects,
       required this.skills,
       required this.aboutMe});
 
@@ -29,7 +29,7 @@ class NavBar extends StatelessWidget {
       {'title': 'About Me', 'scrollController': aboutMe},
 
       {'title': 'Skills', 'scrollController': skills},
-      {'title': 'Projects', 'scrollController': projects},
+      // {'title': 'Projects', 'scrollController': projects},
       {'title': 'Experience', 'scrollController': experienceKey},
       {'title': 'Hire Me', 'scrollController': contactMe},
       // {'title': '', 'scrollController': },
@@ -56,7 +56,7 @@ class NavBar extends StatelessWidget {
                           onTap: () {
                             Scrollable.ensureVisible(
                               e['scrollController'].currentContext!,
-                              duration: const Duration(seconds: 1),
+                              duration: const Duration(milliseconds: 500),
                             );
                           },
                           child: FittedBox(

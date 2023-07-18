@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _experienceKey = GlobalKey();
-  final GlobalKey _projects = GlobalKey();
+  // final GlobalKey _projects = GlobalKey();
   final GlobalKey _contactMe = GlobalKey();
   final GlobalKey _skills = GlobalKey();
   final GlobalKey _aboutMe = GlobalKey();
@@ -33,12 +33,12 @@ class HomeScreen extends StatelessWidget {
                 scrollController: _scrollController,
                 contactMe: _contactMe,
                 experienceKey: _experienceKey,
-                projects: _projects,
+                // projects: _projects,
                 skills: _skills,
               ),
               const Intro(),
               AboutMe(aboutMe: _aboutMe),
-              TechStack(),
+              TechStack(skills: _skills),
               Experience(experienceKey: _experienceKey),
               ContactMe(contactMe: _contactMe),
               const Footer(),

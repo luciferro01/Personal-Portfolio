@@ -7,8 +7,8 @@ import '../../constants/assets_path.dart';
 import '../../constants/responsive.dart';
 
 class TechStack extends StatelessWidget {
-  TechStack({super.key});
-  GlobalKey controller = GlobalKey();
+  final GlobalKey skills;
+  const TechStack({required this.skills, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,31 +32,36 @@ class TechStack extends StatelessWidget {
     double height = MediaQuery.sizeOf(context).height;
     double width = MediaQuery.sizeOf(context).width;
     return Column(
-      key: controller,
+      key: skills,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            textWidget(
-              title: 'Tech Stack ',
-              size: isMobile
-                  ? 30
-                  : isTablet
-                      ? 37
-                      : 43,
-            ),
-            textWidget(
-              title: '( )',
-              size: isMobile
-                  ? 30
-                  : isTablet
-                      ? 37
-                      : 43,
-              textColor: whiteColor,
-            )
-          ],
+        Container(
+          margin: EdgeInsets.only(
+            top: isDesktop ? 40 : 30,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              textWidget(
+                title: 'Tech Stack ',
+                size: isMobile
+                    ? 30
+                    : isTablet
+                        ? 37
+                        : 43,
+              ),
+              textWidget(
+                title: '( )',
+                size: isMobile
+                    ? 30
+                    : isTablet
+                        ? 37
+                        : 43,
+                textColor: whiteColor,
+              )
+            ],
+          ),
         ),
         const SizedBox(
           height: 50,
@@ -203,88 +208,94 @@ class TechStack extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                    Flexible(
-                      flex: 4,
-                      child: Container(
-                        margin: const EdgeInsets.only(left: 40),
-                        child: GridView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: 6,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            // childAspectRatio: 1.4,
-                            // crossAxisCount: 3,
+                    // Flexible(
+                    //   flex: 4,
+                    //   child: Container(
+                    //     margin: const EdgeInsets.only(left: 40),
+                    //     child: GridView.builder(
+                    //       shrinkWrap: true,
+                    //       physics: const NeverScrollableScrollPhysics(),
+                    //       itemCount: 6,
+                    //       gridDelegate:
+                    //           SliverGridDelegateWithFixedCrossAxisCount(
+                    //         // childAspectRatio: 1.4,
+                    //         // crossAxisCount: 3,
 
-                            crossAxisCount: width > 1100 ? 3 : 2,
-                            mainAxisSpacing: 20,
-                            crossAxisSpacing: 30,
-                            mainAxisExtent: 100,
-                          ),
-                          itemBuilder: ((context, index) {
-                            return Container(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 6),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 30),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: lightTextColor,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: darkBackgroundColor,
-                                    spreadRadius: 10,
-                                    blurStyle: BlurStyle.solid,
-                                    blurRadius: 60,
-                                    offset: Offset(6, 6),
-                                  ),
-                                  BoxShadow(
-                                      color: headingTextColor,
-                                      spreadRadius: 2,
-                                      blurRadius: 80,
-                                      offset: Offset(-4, -4),
-                                      blurStyle: BlurStyle.inner),
-                                ],
-                              ),
-                              child: SvgPicture.asset(
-                                tech[index]['icon'],
-                                fit: BoxFit.contain,
-                              ),
-                            );
-                          }),
-                        ),
-                      ),
-                    ),
-                    // const Expanded(child: SizedBox()),
-                    SizedBox(
-                      width: width > 600 ? width * 0.06 : width * 0.04,
-                    ),
+                    //         crossAxisCount: 3,
+                    //         mainAxisSpacing: 20,
+                    //         crossAxisSpacing: 30,
+                    //         mainAxisExtent: width < 650
+                    //             ? 120
+                    //             : width > 550
+                    //                 ? 80
+                    //                 : width > 400
+                    //                     ? 50
+                    //                     : 20,
+                    //       ),
+                    //       itemBuilder: ((context, index) {
+                    //         return Container(
+                    //           // margin: const EdgeInsets.symmetric(
+                    //           //     horizontal: 20, vertical: 6),
+                    //           padding: const EdgeInsets.symmetric(
+                    //               horizontal: 30, vertical: 30),
+                    //           decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(10),
+                    //             color: lightTextColor,
+                    //             boxShadow: const [
+                    //               BoxShadow(
+                    //                 color: darkBackgroundColor,
+                    //                 spreadRadius: 10,
+                    //                 blurStyle: BlurStyle.solid,
+                    //                 blurRadius: 60,
+                    //                 offset: Offset(6, 6),
+                    //               ),
+                    //               BoxShadow(
+                    //                   color: headingTextColor,
+                    //                   spreadRadius: 2,
+                    //                   blurRadius: 80,
+                    //                   offset: Offset(-4, -4),
+                    //                   blurStyle: BlurStyle.inner),
+                    //             ],
+                    //           ),
+                    //           child: SvgPicture.asset(
+                    //             tech[index]['icon'],
+                    //             fit: BoxFit.contain,
+                    //           ),
+                    //         );
+                    //       }),
+                    //     ),
+                    //   ),
+                    // ),
+                    // // const Expanded(child: SizedBox()),
+                    // SizedBox(
+                    //   width: width > 600 ? width * 0.06 : width * 0.04,
+                    // ),
                     Flexible(
                       flex: 4,
                       child: Container(
-                        margin: const EdgeInsets.only(right: 40),
+                        margin: const EdgeInsets.only(left: 40, right: 40),
                         child: GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: 6,
+                          itemCount: 12,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             // childAspectRatio: 1.4,
-                            crossAxisCount: width > 1100 ? 3 : 2,
+                            crossAxisCount: 3,
                             mainAxisSpacing: 20,
                             crossAxisSpacing: 30,
-                            mainAxisExtent: width < 700
+                            mainAxisExtent: width < 650
                                 ? 120
                                 : width > 550
                                     ? 80
-                                    : 50,
+                                    : width > 400
+                                        ? 50
+                                        : 5,
                           ),
                           itemBuilder: ((context, index) {
                             return Container(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 6),
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 30, vertical: 30),
+                                  horizontal: 10, vertical: 10),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: lightTextColor,
